@@ -10,7 +10,7 @@ const {
   colors,
 } = require("../../utils/utils");
 const { existsSync, writeFile, mkdirSync } = require("fs");
-const { VueGenerator } = require("./VueGenerator");
+const { VueGenerator } = require("./vue");
 let { JS, JSX, CSS, CSS_Module } = inputData;
 const {
   JS: jsExt,
@@ -125,7 +125,7 @@ function ReactComponentGenerator(componentName) {
   JSX && CSS && generator(JSX, CSS);
   JSX && CSS_Module && generator(JSX, CSS_Module);
 
-  const generator = (c1, c2) => {
+  function generator(c1, c2) {
     // C1 & C2: Conditions upon which the generator makes decisions.
     if (c1 && c2) {
       if (
@@ -164,7 +164,7 @@ function ReactComponentGenerator(componentName) {
         console.log(colors.yellow(`File already exists!`).bold);
       }
     }
-  };
+  }
 }
 
 input.on("close", () => {

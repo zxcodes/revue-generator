@@ -1,6 +1,6 @@
 const { fileExtensions, input, cwd, colors } = require("../../utils/utils");
 const { writeFile, existsSync } = require("fs");
-const { VUE } = fileExtensions;
+const { VUE: vueExt } = fileExtensions;
 let count = 0;
 const generatedComponents = [];
 
@@ -16,10 +16,10 @@ function VueGenerator() {
       console.log(colors.yellow("Please enter a component name!").bold);
       process.exit();
     } else {
-      if (!existsSync(`${cwd}/${vueFile}${VUE}`)) {
+      if (!existsSync(`${cwd}/${vueFile}${vueExt}`)) {
         count++;
         generatedComponents.push(vueFile);
-        writeFile(`${cwd}/${vueFile}${VUE}`, "", (err) => {
+        writeFile(`${cwd}/${vueFile}${vueExt}`, "", (err) => {
           if (err) {
             console.log(
               colors.red("Something went wrong. Please try again!").bold
@@ -30,7 +30,8 @@ function VueGenerator() {
         });
       } else {
         console.log(
-          colors.yellow(`Component [ ${vueFile}${VUE} ] already exists!`).bold
+          colors.yellow(`Component [ ${vueFile}${vueExt} ] already exists!`)
+            .bold
         );
         process.exit();
       }

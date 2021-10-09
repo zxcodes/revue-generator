@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require("./src/Generators/ReactGenerator");
+require("./src/generators/react");
