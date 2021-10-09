@@ -17,4 +17,14 @@ In action:
 
 ![image](https://user-images.githubusercontent.com/44538497/136579454-10c1279b-1d28-4bdb-9b6d-eefc0e79b6e9.png)
 
-# Issues, contributions, and feedback are welcome.
+# Running the package locally for development:
+
+```
+git clone https://github.com/zxcodes/Revue-Generator
+
+> cd Revue-Generator
+> npm install
+> node index
+```
+
+# Issues, contributions, and feedback are always welcome.
