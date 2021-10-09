@@ -17,7 +17,4 @@ In action:
 
 ![image](https://user-images.githubusercontent.com/44538497/136579454-10c1279b-1d28-4bdb-9b6d-eefc0e79b6e9.png)
 
-# Issues and feedback is appreciated.
-
-Drop issues here:
-zxcodes@gmail.com
+# Issues, contributions, and feedback are welcome.
