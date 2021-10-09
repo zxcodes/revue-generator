@@ -1,0 +1,27 @@
+{
+  "name": "revue-generator",
+  "version": "1.0.2",
+  "main": "./index.js",
+  "bin": {
+    "run": "./index.js"
+  },
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "cli",
+    "command line",
+    "react",
+    "node",
+    "vue",
+    "component generator"
+  ],
+  "author": "Mohammed Farmaan.",
+  "license": "ISC",
+  "description": "A command line tool for easily generating React and Vue components.",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
