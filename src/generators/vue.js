@@ -1,7 +1,7 @@
-const { fileExtensions, input, cwd, colors } = require("../../utils/utils");
+const { fileExtensions, userInput, cwd, colors } = require("../../utils/utils");
 const { writeFile, existsSync } = require("fs");
 const { VUE: vueExt } = fileExtensions;
-let count = 0;
+let createdComponentCount = 0;
 const generatedComponents = [];
 
 function VueGenerator() {
@@ -11,13 +11,13 @@ function VueGenerator() {
     )
   );
   console.log("\nEnter Vue Component Name: ");
-  input.on("line", (vueFile) => {
+  userInput.on("line", (vueFile) => {
     if (vueFile === "") {
       console.log(colors.yellow("Please enter a component name!").bold);
       process.exit();
     } else {
       if (!existsSync(`${cwd}/${vueFile}${vueExt}`)) {
-        count++;
+        createdComponentCount++;
         generatedComponents.push(vueFile);
         writeFile(`${cwd}/${vueFile}${vueExt}`, "", (err) => {
           if (err) {
@@ -38,13 +38,15 @@ function VueGenerator() {
     }
   });
 }
-input.on("close", () => {
-  if (count > 0 && generatedComponents !== 0) {
+userInput.on("close", () => {
+  if (createdComponentCount > 0 && generatedComponents !== 0) {
     console.log(
       `${colors.green(`\nOperation successful.`).bold} ${
         colors.white(
-          `Created ${count} ${
-            count > 1 ? "components" || count <= 1 : "component"
+          `Created ${createdComponentCount} ${
+            createdComponentCount > 1
+              ? "components" || createdComponentCount <= 1
+              : "component"
           }: \n`
         ).bold
       }`

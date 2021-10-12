@@ -1,17 +1,17 @@
 const {
-  input,
+  userInput,
   fileExtensions,
   cwd,
-  inputData,
+  fileTypes,
   cssType,
   reactComponentType,
-  framework,
+  frameworkSelected,
   frameworkType,
   colors,
 } = require("../../utils/utils");
 const { existsSync, writeFile, mkdirSync } = require("fs");
 const { VueGenerator } = require("./vue");
-let { JS, JSX, CSS, CSS_Module } = inputData;
+let { JS, JSX, CSS, CSS_Module } = fileTypes;
 const {
   JS: jsExt,
   JSX: jsxExt,
@@ -19,8 +19,8 @@ const {
   CSSModule: cssModuleExt,
 } = fileExtensions;
 const exit = process.exit;
-let count = 0;
-let { React, Vue } = framework;
+let createdComponentCount = 0;
+let { React, Vue } = frameworkSelected;
 const generatedComponents = [];
 
 console.log(colors.white(`\n<- REVUE COMPONENT GENERATOR ->\n`).bold);
@@ -29,7 +29,7 @@ frameworkType.forEach((item) => {
   console.log(item);
 });
 
-input.question("Enter your choice: ", (ans) => {
+userInput.question("Enter your choice: ", (ans) => {
   switch (ans) {
     case "1":
       React = true;
@@ -51,7 +51,7 @@ input.question("Enter your choice: ", (ans) => {
       console.log(type);
     });
 
-    input.question("Enter your choice: ", (choice) => {
+    userInput.question("Enter your choice: ", (choice) => {
       switch (choice) {
         case "1":
           JS = true;
@@ -71,7 +71,7 @@ input.question("Enter your choice: ", (ans) => {
         console.log(type);
       });
 
-      input.question("Enter your choice: ", (cssChoice) => {
+      userInput.question("Enter your choice: ", (cssChoice) => {
         switch (cssChoice) {
           case "1":
             CSS = true;
@@ -92,15 +92,15 @@ input.question("Enter your choice: ", (ans) => {
             "\n>> Note: After entering one component name, press enter to write another component name and so on. Once finished, end the process using [ Ctrl+C or Ctrl+D ]. "
           )
         );
-        console.log("\nEnter component name: ");
-        input.on("line", (name) => {
+        console.log(`Enter React Component Name:`);
+        userInput.on("line", (name) => {
           if (name === "") {
             console.log(colors.yellow("Please enter a component name!").bold);
             exit();
           } else {
-            ReactComponentGenerator(name);
+            ReactGenerator(name);
             generatedComponents.push(name);
-            count++;
+            createdComponentCount++;
           }
         });
       });
@@ -112,14 +112,14 @@ input.question("Enter your choice: ", (ans) => {
   }
 });
 
-function ReactComponentGenerator(componentName) {
+function ReactGenerator(componentName) {
   if (!existsSync(`${cwd}/${componentName}`)) {
     mkdirSync(`${cwd}/${componentName}`);
   } else {
     console.log(colors.yellow(`Component "${componentName}" already exists!`));
     exit();
   }
-  // Validating input and sending appropriate data to the generator
+  // Validating input and sending appropriate data to the generator.
   JS && CSS && generator(JS, CSS);
   JS && CSS_Module && generator(JS, CSS_Module);
   JSX && CSS && generator(JSX, CSS);
@@ -167,13 +167,15 @@ function ReactComponentGenerator(componentName) {
   }
 }
 
-input.on("close", () => {
-  if (count > 0 && generatedComponents !== 0) {
+userInput.on("close", () => {
+  if (createdComponentCount > 0 && generatedComponents !== 0) {
     console.log(
       `${colors.green(`\nOperation successful.`).bold} ${
         colors.white(
-          `Created ${count} ${
-            count > 1 ? "components" || count <= 1 : "component"
+          `Created ${createdComponentCount} ${
+            createdComponentCount > 1
+              ? "components" || createdComponentCount <= 1
+              : "component"
           }: \n`
         ).bold
       }`

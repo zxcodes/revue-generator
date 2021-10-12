@@ -1,5 +1,5 @@
 const { createInterface } = require("readline");
-const input = createInterface({
+const userInput = createInterface({
   input: process.stdin,
   output: process.stdout,
 });
@@ -11,17 +11,17 @@ const fileExtensions = {
   CSS: ".css",
   VUE: ".vue",
 };
-let inputData = {
+let fileTypes = {
   reactFileType: {
     JS: false,
     JSX: false,
   },
-  cssType: {
+  cssFileType: {
     CSS: false,
     CSS_Module: false,
   },
 };
-let framework = {
+let frameworkSelected = {
   React: false,
   Vue: false,
 };
@@ -38,13 +38,13 @@ const cssType = [
 ];
 const cwd = process.cwd();
 module.exports = {
-  input,
+  userInput,
   fileExtensions,
   cwd,
-  inputData,
+  fileTypes,
   cssType,
   reactComponentType,
-  framework,
+  frameworkSelected,
   frameworkType,
   colors,
 };
