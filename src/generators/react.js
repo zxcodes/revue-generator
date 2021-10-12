@@ -92,7 +92,7 @@ userInput.question("Enter your choice: ", (ans) => {
             "\n>> Note: After entering one component name, press enter to write another component name and so on. Once finished, end the process using [ Ctrl+C or Ctrl+D ]. "
           )
         );
-        console.log(`Enter React Component Name:`);
+        console.log(`\nEnter React Component Name:`);
         userInput.on("line", (name) => {
           if (name === "") {
             console.log(colors.yellow("Please enter a component name!").bold);
