@@ -1,16 +1,10 @@
 ## A Command Line Tool for easily generating React and Vue components.
 # Getting started:
 
-Install the package globally by running:
-
-```
-npm i -g revue-generator
-```
-
 In your project directory, run:
 
 ```
-Project\components\> npx revue-generator
+ATypicalReactProject\Components\ npx revue-generator
 ```
 
 
