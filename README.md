@@ -4,7 +4,7 @@
 In your project directory, run:
 
 ```
-ATypicalReactProject\Components\ npx revue-generator
+MyProject\src\components\ npx revue-generator
 ```
 
 
